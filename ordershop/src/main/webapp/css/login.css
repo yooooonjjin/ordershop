@@ -1,0 +1,609 @@
+
+
+/* 공통 센터값 */
+.login_center, .join_center {
+    max-width: 500px;
+    padding: 40px 10px 30px 10px;
+    margin: 0 auto;
+}
+
+
+#loginBox, .joinBox {
+    display: flex;
+    flex-direction: column;
+}
+/* 공통 센터값 */
+
+#loginBox .login_header {
+    text-align: center;
+   
+}
+
+#loginBox .login_header .logo.font01 {
+    background: url("img/h_logo_bg.svg") no-repeat center top / contain;
+    width: 60%;  
+    height: 70px; 
+    display: inline-block; 
+}
+
+
+#loginBox .login_wrap .login_title p {
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: #333;
+
+}
+
+#loginBox .login_container {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    margin-top:-50px;
+}
+#loginBox .login_container .login_form form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* input_box 공통 스타일 */
+.input_box {
+    position: relative;
+    width: 100%;
+}
+
+/* 아이콘 공통 */
+.input_box i {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+}
+
+/* 아이디 아이콘 */
+.icon_id {
+    background-image: url("img/icon_id.png");
+}
+
+/* 비밀번호 아이콘 */
+.icon_pw {
+    background-image: url("img/icon_pw.png");
+}
+
+
+#loginBox .login_container .login_form .login_input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+
+  
+}
+
+#loginBox .login_container .login_form .login_input input {
+    width: 100%;
+    padding: 18px 20px 18px 48px;
+    border: 1px solid #e1e1e1;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    color: #666;
+    box-sizing: border-box;
+    
+ 
+}
+
+#loginBox .login_container .login_form .login_input input:focus {
+    border: 1px solid #0080F8;
+}
+#loginBox .login_container .login_form .login_input label {
+    font-size: 1.4rem;
+    color: #333;
+}
+
+#loginBox .login_container .login_form .checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+k
+#loginBox .login_container .login_form .checkbox label {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #999;
+}
+
+
+
+input[type="checkbox"]:checked + label::before {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type="checkbox"]:checked + label::before::after {
+    content: "✔";
+    color: white;
+    font-size: 14px;
+}
+
+#loginBox .login_container .login_button{
+   position: relative;
+   width: 100%;
+    padding: 18px 20px;
+    border-radius: 5px;
+    background: #2360E6;
+    text-align:center;
+    box-sizing: border-box;
+
+}
+#loginBox .login_container .login_button >a{
+
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    font-weight: bold;
+
+ 
+}
+
+
+#loginBox .login_container .login_Submenu{
+    text-align:center;
+    margin: 10px auto;
+
+   
+}
+
+#loginBox .login_container .login_Submenu >a{
+       text-decoration:none;
+       color:#000;
+       font-size: 1.2rem;
+}
+
+
+#loginBox .login_container .login_Submenu .login_srch > span {
+    display: inline-block;
+    vertical-align: middle;
+    height: 10px;
+    width: 1px;
+    background-color: #bbb;
+    margin: 0 6px;
+}
+
+
+
+
+
+
+/*회원가입시 css*/
+/* 공통 센터값 */
+.login_center {
+    max-width: 500px;
+    padding: 40px 10px 30px 10px;
+    margin: 0 auto;
+}
+
+
+#joinBox {
+    display: flex;
+    flex-direction: column;
+
+   
+}
+/* 공통 센터값 */
+
+#joinBox .join_header {
+    text-align: center;
+   
+}
+
+#joinBox .join_header .logo.font01 {
+    background: url("img/h_logo_bg.svg") no-repeat center top / contain;
+    width: 60%;  
+    height: 70px; 
+    display: inline-block; 
+}
+
+
+#joinBox .join_wrap .join_title p {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #333;
+
+}
+#joinBox .join_wrap .join_title p:last-child {
+    font-size: 1rem;
+    color: #777;
+    margin: -30px 0 30px 0 ;
+
+}
+
+#joinBox .join_wrap .agree-all {
+   width: 100%;
+    padding: 18px 20px ;
+    border: 1px solid #e1e1e1;
+    background:#f1f1f1;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    color: #666;
+    box-sizing: border-box;
+   
+   
+}
+
+#joinBox .join_wrap .agree-all .custom-checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+/* 라벨 스타일 */
+#joinBox .join_wrap .agree-all .checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  position: relative;
+  padding-left: 30px;
+}
+
+/* 외곽 원 */
+#joinBox .join_wrap .agree-all .checkbox-label::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  border: 2px solid #888;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #fff;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+/* 체크됐을 때 동글뱅이 색상 변경 */
+#joinBox .join_wrap .agree-all .custom-checkbox:checked + .checkbox-label::before {
+  background-color: #0057FF;
+  border-color: #0057FF;
+}
+
+/* ✔ 체크 표시 */
+#joinBox .join_wrap .agree-all .custom-checkbox:checked + .checkbox-label::after {
+
+    left: 4px;
+    content: '✔';
+    font-size: 12px;
+    color: #fff;
+    position: absolute;
+    /* left: 3px; */
+    top: 48%;
+    transform: translateY(-50%);
+}
+
+/* 개별 약관 체크박스 리스트 */
+#joinBox .join_wrap .agree-list {
+  margin-top: 20px;
+  padding: 15px 20px;
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* 개별 체크박스 라벨 스타일 */
+#joinBox .join_wrap .agree-list label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 체크박스 기본 스타일 */
+#joinBox .join_wrap .agree-list input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #0057FF;  /* 크롬, 엣지 등 최신 브라우저 지원 */
+}
+
+/* 다음 버튼 영역 */
+#joinBox .join_wrap .join_Submenu {
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* 다음 버튼 스타일 */
+#joinBox .join_wrap .join_Submenu .submit_btn {
+  padding: 14px 0;
+  width: 100%;
+  background-color: #0057FF;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* 버튼 hover 효과 */
+#joinBox .join_wrap .join_Submenu .submit_btn:hover {
+  background-color: #0043cc;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*회원가입 폼 */
+
+
+.join_center {
+    max-width: 500px;
+    padding: 40px 10px 30px 10px;
+    margin: 0 auto;
+}
+
+
+#joinBox {
+    display: flex;
+    flex-direction: column;
+
+   
+}
+
+
+
+
+
+#joinBox .join_header {
+    text-align: center;
+   
+}
+
+#joinBox .join_header .logo.font01 {
+    background: url("img/h_logo_bg.svg") no-repeat center top / contain;
+    width: 60%;  
+    height: 70px; 
+    display: inline-block; 
+}
+
+
+#joinBox .join_wrap .join_title p {
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: #333;
+
+}
+
+#joinBox .join_container {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    margin-top:-50px;
+}
+#joinBox .join_container .join_form form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* input_box 공통 스타일 */
+.input_box {
+    position: relative;
+    width: 100%;
+}
+
+
+#joinBox .join_container .join_form .join_input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+
+  
+}
+
+#joinBox .join_container .join_form .join_input input {
+    width: 100%;
+    padding: 18px 20px;
+    border: 1px solid #e1e1e1;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    color: #666;
+    box-sizing: border-box;
+ 
+}
+
+#joinBox .join_container .join_form .join_input input:focus {
+    border: 1px solid #0080F8;
+}
+#joinBox .join_container .join_form .join_input label {
+    font-size: 1.4rem;
+    color: #333;
+}
+
+
+
+#joinBox .join_container .join_form .checkbox label {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #999;
+}
+
+
+
+
+#joinBox .join_container .join_button{
+   position: relative;
+   width: 100%;
+    padding: 18px 20px;
+    border-radius: 5px;
+    background: #2360E6;
+    text-align:center;
+    box-sizing: border-box;
+
+}
+#joinBox .join_container .join_button >a{
+
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    font-weight: bold;
+
+ 
+}
+
+
+#joinBox .join_container .join_Submenu{
+    text-align:center;
+    margin: 10px auto;
+
+   
+}
+
+#joinBox .join_container .join_Submenu >a{
+       text-decoration:none;
+       color:#000;
+       font-size: 1.2rem;
+}
+
+
+#joinBox .join_container .join_Submenu .join_srch > span {
+    display: inline-block;
+    vertical-align: middle;
+    height: 10px;
+    width: 1px;
+    background-color: #bbb;
+    margin: 0 6px;
+}
+
+
+/* 회원가입시 오류*/
+
+/* 에러 메시지 스타일 */
+.error_text {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 4px;
+  height: 18px; /* 높이 고정해서 레이아웃 흔들림 방지 */
+}
+
+
+
+
+.ui-datepicker {
+  font-size: 14px;
+  border: 1px solid #bbb;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.ui-datepicker-header {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+}
+
+.ui-datepicker-calendar th {
+  color: #666;
+  font-weight: normal;
+}
+
+.ui-datepicker-calendar td a {
+  color: #333;
+  text-decoration: none;
+  padding: 4px 6px;
+  display: block;
+  border-radius: 4px;
+}
+
+.ui-datepicker-calendar td a:hover,
+.ui-datepicker-calendar td.ui-datepicker-current-day a {
+  background-color: #4a90e2;
+  color: white !important;
+}
+
+/*회원가입시*/
+
+
+.input_box select{
+    width: 100%;
+    padding: 18px 20px ;
+    border: 1px solid #e1e1e1;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    color: #666;
+    box-sizing: border-box;
+   
+}
+
+
+
+
+.join_Form_button >button {
+    all: unset;        /* 기본 스타일 완전 초기화 */
+    cursor: pointer; 
+   width: 100%;
+    padding: 18px 20px;
+    border-radius: 5px;
+    background: #2360E6;
+    text-align:center;
+    box-sizing: border-box;
+
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    font-weight: bold;
+   
+ 
+}
+
+.error_text:empty {
+  display: none;
+}
+
+
+
+.error_text {
+  color: red; 
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+
+
+

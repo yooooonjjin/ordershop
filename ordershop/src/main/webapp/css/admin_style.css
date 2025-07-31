@@ -1,0 +1,643 @@
+:root{
+	--blue-color:#2360E6;
+	--lightgray-color:#666666;
+}
+
+/* 상품관리 adminProductWrite*/
+.htitle{
+	
+	font-size:25px;
+	font-weight:lighter;
+	margin: 50px 0 20px 0;
+}
+/* 상품관리 하위 제목 */
+.mtitle{
+	
+	font-size:15px;
+	color: var(--lightgray-color);
+	margin-bottom:10px;
+}
+
+.shr{
+	margin:10px 0 30px 0;
+	border-color:#333;	
+}
+/* 상품테이블 */
+.ptable{
+	border-collapse : collapse;
+	width:100%;
+}
+.ptable .ptablethd{
+	border:1px solid #ccc;
+ 	padding:10px;
+ 	font-size:12px;
+ 	color:#333;	
+ 	font-weight:lighter;
+}
+
+.ptable th{
+	text-align:center;
+}
+.ptable td{
+	text-align:left;
+}
+/* 상품입력박스 */
+
+.sinput {
+	border : none;
+	border-radius: 5px;
+	width:100%;
+	box-shadow : 0 0 3px 1px #d1d1d1;
+	padding:10px;
+}
+
+.stextarea{
+	border:none;
+	border-radius: 5px;
+	width:100%;
+	box-shadow : 0 0 3px 1px #d1d1d1;
+	padding:10px;
+}
+.stextarea::placeholder{
+	text-align:right;
+}
+/* 선택박스 */
+
+.sselect{
+	border:none;
+	border-radius: 5px;
+	width:100%;
+	box-shadow : 0 0 3px 1px #d1d1d1;
+	padding:10px;
+}
+/* 파일 선택 버튼 */
+
+.input_file_button{
+  display: inline-block;
+  margin-bottom:5px;
+  padding: 8px 30px;
+  background-color:var(--blue-color);
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+
+/* 하단 버튼 */
+.div_button_area{
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+	/* margin: 40px;
+	text-align:center; */
+}
+.div_button_area > div {
+	display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* .div_button_area > button{
+	border-radius: 4px;
+	padding: 8px 25px;
+	margin-right:5px;
+	background:var(--blue-color);
+	color:#fff;
+}
+
+.div_button_area > button:last-child{
+	color:var(--blue-color);
+	background:#fff;
+	border: 1px solid var(--blue-color);
+	margin-right:0px;
+} */
+/* product_url 넘치는 부분 ..처리 */
+.url-ellipsis {
+  display: inline-block;
+  max-width: 280px; /* 최대 너비는 필요에 따라 조절 가능 */
+  white-space: nowrap; /* 줄바꿈 금지 */
+  overflow: hidden; /* 넘치는 부분 숨김 */
+  text-overflow: ellipsis; /* 넘치는 부분은 ...으로 표시 */
+  vertical-align: middle;
+}
+/* 상품관리 adminProductList E*/
+
+
+/* 다연 */
+
+/*회원목록 리스트*/
+
+/* 상단텍스트*/
+#admin_section > h2{
+   font-size: 3em;
+   font-weight:500;
+   margin:15px 0;
+}
+
+#admin_section  h3{
+   font-size: 2.5em;
+   font-weight: 500;
+   margin:10px;
+   color:#777;
+   margin:15px 0;
+
+}
+/*상단 메뉴영역*/
+#admin_section  .top_menu{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px auto 10px;
+}
+
+#admin_section  .delete_selection{
+   width:20%;
+   vertical-align:middle
+}
+
+#admin_section  .delete_button{
+   padding:5px;
+   border:1px solid #2360E6;
+   border-radius:5px;
+   color:#2360E6;
+   background-color:#fff;
+}
+#admin_section .search_menu{
+     display: flex;
+       align-items: center;
+      gap: 8px;
+}
+
+#admin_section .search_menu select{
+   height: 32px;
+    padding: 0 10px;
+    border-radius: 5px;
+}
+
+#admin_section .search_menu input[type="text"] {
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 200px;
+}
+
+#admin_section .search_menu .search_button{
+   background:#2360E6;
+   color:#fff;
+   border-radius:5px;
+   padding:5px 15px;
+
+}
+
+
+
+/*총 인원*/
+
+#admin_section .member_total{
+   font-size:1.5em;
+   font-weight:500;
+   
+}
+#admin_section .member_total .member_total_point{
+   color: #2360E6;
+   
+}
+
+/*목록 테이블영역*/
+#admin_section .membertable{
+   width:100%;
+   margin:0 auto;
+   text-align:center;
+   box-sizing:border-box;
+   border-collapse: collapse;
+   table-layout: fixed;
+   
+}
+
+.membertable input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 2px solid #ddd;
+  width: 15px;
+  height: 15px;
+  border-radius: 5px;
+  vertical-align: middle;
+  cursor: pointer;
+  position: relative;
+  background-color: white;
+}
+
+.membertable input[type="checkbox"]:checked::after {
+  content: "✔";
+  font-size: 12px;
+  color: #2360E6;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1;
+}
+
+
+#admin_section .membertable th{
+   border-top:2px solid #000;
+   border-bottom:2px solid #ddd;
+   font-size:1.5em;
+   font-weight:500;
+   padding:10px;
+   
+}
+#admin_section .membertable td{
+   border-bottom:2px solid #ddd;
+   padding:10px;
+   font-size:1.5em;
+}
+
+
+#admin_section > .wirte_button{
+   background:#2360E6;
+   color:#fff;
+   border-radius:5px;
+   padding:5px 15px;
+   display:block;
+   margin:30px auto;
+   
+
+}
+
+/*페이징 영역*/
+
+#admin_section .div_page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  gap: 6px;
+  font-family: sans-serif;
+}
+
+#admin_section .div_page a {
+  color: #333;
+  padding: 6px 12px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-size:1.5em;
+  font-weight:500;
+}
+
+#admin_section .div_page a:hover {
+  background-color: #f0f0f0;
+}
+
+#admin_section .div_page a.active {
+  background-color: #192642;
+  color: white;
+  border-radius: 100%;
+}
+
+
+
+
+
+/*회원목록 회원정보 자세히*/
+
+#admin_section  .membertable_detail{
+   width:100%;
+   margin:0 auto;
+   text-align:center;
+   box-sizing:border-box;
+   border-collapse: collapse;
+}
+
+
+
+#admin_section .membertable_detail tr:first-child {
+   border-top:2px solid #000;
+   border-bottom:1px solid #ddd;
+   
+}
+
+
+#admin_section .membertable_detail tr{
+   border-bottom:1px solid #ddd;
+   font-size:1.5em;
+   padding:15px;
+   text-align:left;
+}
+#admin_section .membertable_detail tr th{
+   width:20%;
+   padding:10px;
+   font-weight:500;
+
+}
+
+   
+#admin_section .membertable td{
+   width:80%;
+   border-bottom:2px solid #ddd;
+   padding:10px;
+   font-size:1.5em;
+    
+   
+}
+
+
+/* 회원정보 자세히 하위버튼*/
+#admin_section .bottom_buttons{
+   width:100%;
+   margin:0 auto;
+   text-align:center;
+   
+   
+}
+#admin_section .bottom_buttons{
+   width:100%;
+   margin:0 auto;
+}
+
+
+#admin_section  .bottom_buttons > input[type="button"]{
+   border-radius:5px;
+   padding:5px 15px;
+   margin:10px 5PX;
+   border:1px solid #2360E6;
+   /*background:#fff;*/
+      
+}   
+#admin_section  .bottom_buttons > input[type="button"]:last-child{
+   background:#2360E6;
+   color:#fff;
+
+}
+
+
+/*회원목록 디테일  차단 모듈창*/
+#modal_overlay_block {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  display:none;
+}
+
+#modal_overlay_block .modal_block {
+  background: #fff;
+  width: 40%;
+  height: 60%;
+  border-radius: 10px;
+  padding: 25px 30px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  display:none;
+  
+}
+
+#modal_overlay_block .modal_block table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+#modal_overlay_block .modal_block table thead .modal_title {
+  padding: 10px 8px;
+  border-bottom: 2px solid #000;
+  vertical-align: middle;
+  text-align: left;
+  color: #777;
+  font-size: 2em;
+  font-weight:300;
+
+}
+
+#modal_overlay_block .modal_block table th {
+  padding: 10px 8px;
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+  text-align: left;
+  font-size:1.5em;
+  width: 15%;
+  font-weight:300;
+}
+
+#modal_overlay_block .modal_block table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+  text-align: left;
+  font-size:1.5em;
+
+}
+
+#modal_overlay_block .modal_block .modal_reason{
+   
+     border:none;
+}
+
+#modal_overlay_block .modal_block table thead .modal_reson {
+  padding: 10px 8px;
+  border:none;
+  vertical-align: middle;
+  text-align: left;
+  color: #777;
+  font-size: 2em;
+  margin: 20px 0;
+
+
+}
+
+
+ #modal_overlay_block .modal_block .modal_reason #modalReasonBlock {
+  width: 100%;
+  height: 200px;
+  resize: none;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+ #modal_overlay_block .modal_block .modal_buttons{
+      display: flex;
+       justify-content: center; /* 내부 버튼을 수평 중앙 정렬 */
+      gap: 5px; /* 버튼 사이 간격 */
+   
+ }
+  #modal_overlay_block .modal_block .modal_buttons > button {
+  padding: 8px 22px;
+  margin-top: 18px;
+  margin-right: 12px;
+  border-radius: 6px;
+  border: 1.5px solid #007bff;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: white;
+  color: #007bff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+  #modal_overlay_block .modal_block .modal_buttons > button:last-child {
+  padding: 8px 22px;
+  margin-top: 18px;
+  margin-right: 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color:#007bff;
+  color: white;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+/*회원목록 디테일 삭제모듈창*/
+#modal_overlay_delete {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  display:none;
+}
+
+#modal_overlay_delete .modal_delete {
+  background: #fff;
+  width: 40%;
+  height: 60%;
+  border-radius: 10px;
+  padding: 25px 30px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  display:none;
+  
+}
+
+#modal_overlay_delete .modal_delete table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+#modal_overlay_delete .modal_delete table thead .modal_title {
+  padding: 10px 8px;
+  border-bottom: 2px solid #000;
+  vertical-align: middle;
+  text-align: left;
+  color: #777;
+  font-size: 2em;
+  font-weight:300;
+
+}
+
+#modal_overlay_delete .modal_delete table th {
+  padding: 10px 8px;
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+  text-align: left;
+  font-size:1.5em;
+  width: 15%;
+  font-weight:300;
+}
+
+#modal_overlay_delete .modal_delete table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+  text-align: left;
+  font-size:1.5em;
+
+}
+
+#modal_overlay_delete .modal_delete .modal_reason{
+   
+     border:none;
+}
+
+#modal_overlay_delete .modal_delete table thead .modal_reson {
+  padding: 10px 8px;
+  border:none;
+  vertical-align: middle;
+  text-align: left;
+  color: #777;
+  font-size: 2em;
+  margin: 20px 0;
+
+
+}
+
+
+ #modal_overlay_delete .modal_delete .modal_reason #modalReasonDelete{
+  width: 100%;
+  height: 200px;
+  resize: none;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+ #modal_overlay_delete .modal_delete .modal_buttons{
+      display: flex;
+       justify-content: center; /* 내부 버튼을 수평 중앙 정렬 */
+      gap: 5px; /* 버튼 사이 간격 */
+   
+ }
+  #modal_overlay_delete .modal_delete .modal_buttons > button {
+  padding: 8px 22px;
+  margin-top: 18px;
+  margin-right: 12px;
+  border-radius: 6px;
+  border: 1.5px solid #007bff;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: white;
+  color: #007bff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+  #modal_overlay_delete .modal_delete .modal_buttons > button:last-child {
+  padding: 8px 22px;
+  margin-top: 18px;
+  margin-right: 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color:#007bff;
+  color: white;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/*관리자페이지 메인 회원목록 자세히보기*/
+
+#admin_section .admin_main_Detailed{
+   width:100%;
+   position: relative; 
+}
+#admin_section .admin_main_Detailed > a{
+   font-size:1.5em;
+   color:#007bff;
+   text-decoration: underline;
+   display: flex;
+   justify-content: flex-end;
+    align-items: center;
+    margin:10px 0;
+}
+
+#admin_section .admin_main_Detailed > a:hover{
+   color: #192642;
+
+   
+}
+
+
+

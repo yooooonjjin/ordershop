@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace : 매퍼의 고유값 -->
+<mapper namespace="com.ordershop.mapper.MainMapper">
+
+	
+	   
+   <select id="selectListTotal" resultType="int" parameterType="uproductDto">
+      SELECT    COUNT(*)
+      FROM
+            PRODUCT
+      WHERE
+            1 = 1
+            <if test="searchWord != null and searchWord != ''">
+                  AND (
+                      PRODUCT_NAME LIKE '%' || #{searchWord} || '%' 
+                      OR PRODUCT_DESCRIPTION LIKE '%' || #{searchWord} || '%'
+                  )
+              </if>
+   </select>
+	
+   <select id="selectuserProductList" resultType="Map" parameterType="uproductDto">
+      SELECT * FROM (
+         SELECT ROWNUM RN, A. * FROM (
+            SELECT
+                  PRODUCT_NO
+                  ,PRODUCT_NAME
+                  ,PRODUCT_PRICE
+                  ,PRODUCT_DESCRIPTION
+                  ,PRODUCT_SALE
+                  ,PRODUCT_IMG
+                  ,DELIVERY_MTH
+                  ,DELIVERY_FEE
+                  ,TO_CHAR(REGISTRATION_DATE, 'YYYY-MM-DD') REGISTRATION_DATE
+                  ,SALES_CNT
+                  ,VIEW_CNT
+                  ,PRODUCT_STATUS
+                  ,PRODUCT_FINAL_PRICE
+                  ,FILEPATH
+            FROM
+                  PRODUCT
+            WHERE
+                  1 = 1
+                  <!-- 검색 (상품명) -->
+                  <if test="searchWord != null and searchWord != ''">
+                          AND (
+                              PRODUCT_NAME LIKE '%' || #{searchWord} || '%' 
+                              OR PRODUCT_DESCRIPTION LIKE '%' || #{searchWord} || '%'
+                          )
+                      </if>
+            <choose>
+               <when test ="sortType == 'recent'">
+                  ORDER BY REGISTRATION_DATE DESC
+               </when>
+               <when test ="sortType == 'price'">
+                  ORDER BY PRODUCT_FINAL_PRICE DESC
+               </when>
+               <when test ="sortType == 'salesCnt'">
+                  ORDER BY SALES_CNT DESC
+               </when>
+               <otherwise>
+                  ORDER BY REGISTRATION_DATE DESC
+               </otherwise>
+            </choose>
+         ) A ) B
+      WHERE RN &gt;= #{firstIndex} AND RN &lt;= #{lastIndex}
+   </select>
+      
+      
+   <select id="selectLoginCheck" parameterType="memberDto" resultType="int">
+       SELECT COUNT(*) FROM USERINFO
+       WHERE USER_ID = #{user_id} AND USER_PASS = #{user_pass}
+   </select>
+   
+	
+	<!-- 회원가입시 아이디유효성체크 -->
+   
+<select id="selectMemberUserid" parameterType="String" resultType="int">
+    SELECT COUNT(*) FROM USERINFO WHERE USER_ID = #{userid}
+</select>
+   
+<!-- 회원가입시 아이디중복체크 -->
+<select id="selectMemberUser_id" resultType="int">
+      SELECT COUNT(*) FROM USERINFO WHERE USER_ID=#{userid}
+   
+   </select>
+	
+	   
+<!-- 회원가입 정보 저장 -->
+   <insert id="insertMember">
+      INSERT INTO USERINFO(
+                  USER_NO
+                  ,USER_ID
+                  ,USER_PASS
+                  ,USER_NAME
+                  ,USER_BIRTH
+                  ,USER_GENDER
+                  ,USER_PHONE
+                  ,USER_ADDRESS
+                  ,USER_JOIN
+                  ,IS_DELETED
+                  ,IS_BLOCKED
+                     )
+               VALUES(
+                  USERINFO_SEQ.NEXTVAL
+                  ,#{user_id}
+                  ,#{user_pass}
+                  ,#{user_name}
+                  ,#{user_birth}
+                  ,#{user_gender}
+                  ,#{user_phone}
+                  ,#{user_address}
+                  ,SYSDATE
+                  ,'N'
+                  ,'N'
+               )
+   </insert>
+	
+	
+	   <select id="selectUserProductDetail" resultType="uproductDto">
+      SELECT   PRODUCT_NO
+            ,PRODUCT_NAME
+            ,PRODUCT_PRICE
+            ,PRODUCT_DESCRIPTION
+            ,PRODUCT_SALE
+            ,PRODUCT_IMG 
+            ,DELIVERY_MTH
+            ,DELIVERY_FEE
+            ,TO_CHAR(REGISTRATION_DATE, 'YYYY-MM-DD') REGISTRATION_DATE
+            ,SALES_CNT
+            ,VIEW_CNT
+            ,PRODUCT_STATUS
+            ,PRODUCT_FINAL_PRICE
+            ,FILEPATH
+      FROM
+            PRODUCT
+      WHERE
+            PRODUCT_NO=#{product_no}
+   </select>
+	
+	
+	  <update id="updateProductListViewCnt">
+      UPDATE   PRODUCT
+      SET
+            VIEW_CNT=VIEW_CNT+1
+      WHERE
+            PRODUCT_NO = #{product_no}
+   </update>
+	
+	
+	  <select id="countCartList" parameterType="ucartDto" resultType="int">
+      SELECT   COUNT(*)
+        FROM
+              CART
+        WHERE
+              USER_NO = #{user_no}
+        AND
+              PRODUCT_NO = #{product_no}
+   </select>
+   
+      <update id="updateCartList" parameterType="ucartDto">
+        UPDATE   CART
+        SET
+              ORDER_CNT = ORDER_CNT + #{order_cnt}
+        WHERE
+              USER_NO = #{user_no}
+        AND
+            PRODUCT_NO = #{product_no}
+   </update> 
+   
+	   <insert id="insertCartList" parameterType="ucartDto">
+      INSERT INTO CART   (   CART_ID
+                        ,USER_NO
+                        ,PRODUCT_NO
+                        ,ORDER_CNT
+                        ,PRICE_SNAPSHOT
+                        ,SALE_SNAPSHOT
+                        ,PRODUCT_CHK)
+       VALUES            (   CART_SEQ.NEXTVAL
+                         ,#{user_no}
+                         ,#{product_no}
+                         ,#{order_cnt}
+                         ,#{price_snapshot}
+                         ,#{sale_snapshot}
+                         ,'Y')
+   </insert>
+   
+	 <select id="selectCartListTotalCnt" resultType="int">
+      SELECT COUNT(*) FROM CART
+   </select>
+	
+	   <select id="selectCartList" parameterType="ucartDto" resultType="ucartDto">
+         SELECT * FROM (
+           SELECT ROWNUM RN, A.* FROM (
+               SELECT  C.USER_NO,
+                       C.PRODUCT_NO,
+                       C.ORDER_CNT,
+                       C.PRICE_SNAPSHOT,
+                       C.SALE_SNAPSHOT,
+                       P.PRODUCT_NAME,
+                       P.PRODUCT_DESCRIPTION,
+                       P.DELIVERY_MTH,
+                       P.DELIVERY_FEE,
+                       TO_CHAR(C.ORDER_CNT * C.PRICE_SNAPSHOT, 'FM999,999,999,999') total_Price,
+                       P.PRODUCT_IMG,
+                       P.FILEPATH
+               FROM
+                     CART C
+               JOIN PRODUCT P ON C.PRODUCT_NO = P.PRODUCT_NO
+               WHERE
+                     C.USER_NO = #{user_no}
+                 AND
+                       C.PRODUCT_CHK = 'Y'
+               ORDER BY C.CART_ID DESC ) A )
+       WHERE RN &gt;= #{firstIndex} AND RN &lt;= #{lastIndex}
+   </select>
+	
+	
+<select id="selectMemberInfoByUserId" resultType="memberDto">
+
+	SELECT USER_NO, USER_ID, USER_PASS, USER_NAME, USER_BIRTH, USER_GENDER,
+       USER_PHONE, USER_ADDRESS, USER_JOIN, IS_DELETED, IS_BLOCKED
+		FROM USERINFO
+		WHERE USER_ID = '${user_id}'
+
+</select>
+	
+	
+	<delete id ="deleteCartList">
+      DELETE
+      FROM
+            CART
+      WHERE
+            PRODUCT_NO = #{product_no}
+   </delete>
+   
+   
+   <delete id="cartDeleteEach">
+      DELETE FROM CART WHERE PRODUCT_NO IN(${datas})
+   </delete>
+   
+   
+   <select id="selectUserInfo" resultType="uinfoDto">
+      SELECT   USER_NO
+            ,USER_ID
+            ,USER_NAME
+            ,USER_PHONE
+            ,USER_ADDRESS
+      FROM
+            USERINFO
+      WHERE
+            USER_NO =#{user_no}
+            </select>
+            
+            
+      <select id="selectOrderId" resultType="string">
+	       SELECT TO_CHAR(ORDERITEM_SEQ.NEXTVAL) FROM DUAL
+	   </select>   
+    
+            
+            
+              <insert id="insertOrder">
+      INSERT   INTO ORDERITEM   (   ORDER_ID
+                           ,PRODUCT_NO
+                           ,ORDER_CNT
+                           ,ORDER_RDATE
+                           ,DELIVERY_METHOD
+                           ,DELIVERY_FEE
+                           ,DELIVERY_CATE
+                           ,USER_NO
+                           ,ORDER_STATUS
+                           ,ADMIN_ID
+                           ,RECIPIENT_NAME
+                           ,RECIPIENT_ADDRESS
+                           ,PRODUCT_NAME
+                           ,TOTAL_PRICE
+                           ,DELIVERY_REQUEST)
+               VALUES      (   #{order_id}
+                           ,#{product_no}
+                           ,#{order_cnt}
+                           ,SYSDATE
+                           ,#{delivery_method}
+                           ,#{delivery_fee}
+                           ,#{delivery_cate}
+                           ,#{user_no}
+                           ,#{order_status}
+                           ,#{admin_id}
+                           ,#{recipient_name}
+                           ,#{recipient_address}
+                           ,#{product_name}
+                           ,#{total_price}
+                           ,#{delivery_request} )
+   </insert>
+           
+           
+            
+   <insert id="insertPayment">
+      INSERT   INTO PAYMENT   (   PAY_ID
+                           ,ORDER_ID
+                           ,PRODUCT_NO
+                           ,USER_NO
+                           ,PAY_DATE
+                           ,PAY_METHOD
+                           ,PAY_STATUS
+                           ,TOTAL_PRICE
+                           ,ORDER_CNT
+                           ,DELIVERY_REQUEST )
+            VALUES         (    PAYMENT_SEQ.NEXTVAL
+                           ,#{order_id}
+                           ,#{product_no}
+                           ,#{user_no}
+                           ,SYSDATE
+                           ,#{pay_method}
+                           ,#{pay_status}
+                           ,#{total_price}
+                           ,#{order_cnt}
+                           ,#{delivery_request})
+   </insert>
+
+            
+         <select id="selectUserDelivery" resultType="Map" parameterType="uorderDto">
+	    SELECT * FROM (
+	        SELECT ROWNUM RN, A.* FROM (
+	            SELECT 
+	                O.ORDER_ID,
+	                O.PRODUCT_NO,
+	                O.ORDER_CNT,
+	                O.ORDER_RDATE,
+	                O.USER_NO,
+	                O.PRODUCT_NAME,
+	                O.TOTAL_PRICE,
+	                P.PAY_STATUS,
+	                T.PRODUCT_DESCRIPTION,
+	                T.FILEPATH,
+					T.PRODUCT_IMG
+	            FROM ORDERITEM O
+	            JOIN PAYMENT P ON O.ORDER_ID = P.ORDER_ID
+	            JOIN PRODUCT T ON O.PRODUCT_NO = T.PRODUCT_NO
+	            <where>
+	                O.USER_NO = #{user_no}
+	                <if test="pay_status != null and pay_status != '' and pay_status != 'ALL'">
+	                    AND P.PAY_STATUS = #{pay_status}
+	                </if>
+	                <if test="searchWord != null and searchWord != ''">
+	                    AND (
+	                        O.PRODUCT_NAME LIKE '%' || #{searchWord} || '%'
+	                        OR T.PRODUCT_DESCRIPTION LIKE '%' || #{searchWord} || '%'
+	                    )
+	                </if>
+	            </where>
+	            ORDER BY O.ORDER_RDATE DESC
+	        ) A
+	        WHERE ROWNUM &lt;= #{lastIndex}
+	    )
+	    WHERE RN &gt;= #{firstIndex}
+	</select>
+
+	<select id="selectUserDeliveryCount" resultType="int" parameterType="uorderDto">
+	    SELECT COUNT(*)
+	    FROM ORDERITEM O
+	    JOIN PAYMENT P ON O.ORDER_ID = P.ORDER_ID
+	    JOIN PRODUCT T ON O.PRODUCT_NO = T.PRODUCT_NO
+	    <where>
+	        O.USER_NO = #{user_no}
+	        <if test="pay_status != null and pay_status != '' and pay_status != 'ALL'">
+	            AND P.PAY_STATUS = #{pay_status}
+	        </if>
+	        <if test="searchWord != null and searchWord != ''">
+	            AND (
+	                O.PRODUCT_NAME LIKE '%' || #{searchWord} || '%'
+	                OR T.PRODUCT_DESCRIPTION LIKE '%' || #{searchWord} || '%'
+	            )
+	        </if>
+	    </where>
+	</select>   
+            
+            <select id="selectOrderDetail" parameterType="int" resultType="uorderDto">
+		SELECT	O.ORDER_ID
+			    ,O.RECIPIENT_ADDRESS
+			    ,O.ORDER_CNT
+			    ,O.RECIPIENT_NAME
+			    ,U.USER_NAME
+			    ,U.USER_PHONE
+			    ,P.PAY_METHOD
+			    ,P.ORDER_CNT
+			    ,P.DELIVERY_REQUEST
+			    ,P.TOTAL_PRICE
+			    ,PR.PRODUCT_NAME
+			    ,PR.PRODUCT_DESCRIPTION
+			    ,PR.PRODUCT_SALE
+			    ,PR.PRODUCT_PRICE
+				,PR.PRODUCT_FINAL_PRICE
+				,PR.FILEPATH
+				,PR.PRODUCT_IMG
+		FROM
+				ORDERITEM O
+		JOIN 	USERINFO U   	ON O.USER_NO = U.USER_NO
+	    JOIN 	PAYMENT P  		ON O.ORDER_ID = P.ORDER_ID
+	    JOIN 	PRODUCT PR 		ON O.PRODUCT_NO = PR.PRODUCT_NO
+		WHERE
+				O.ORDER_ID = #{ORDER_ID}
+	</select>
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+            
+   
+   
+   
+   
+   
+   
+	
+	
+	
+
+</mapper>

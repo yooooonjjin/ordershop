@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace : 매퍼의 고유값 -->
+<mapper namespace="com.ordershop.mapper.AdminMapper">
+
+<select id="selectadminProductListMain" resultType="Map">
+
+	SELECT a.* FROM(SELECT PRODUCT_NO
+        ,PRODUCT_NAME
+        ,PRODUCT_PRICE
+        ,PRODUCT_DESCRIPTION
+        ,PRODUCT_SALE
+        ,PRODUCT_IMG
+        ,DELIVERY_MTH
+        ,DELIVERY_FEE
+        ,REGISTRATION_DATE
+        ,SALES_CNT
+        ,VIEW_CNT
+        ,PRODUCT_STATUS
+        ,ADMIN_ID
+        ,PRODUCT_URL
+        ,PRODUCT_FINAL_PRICE
+        ,UPDATED_DATE
+        from product) a  WHERE ROWNUM <![CDATA[<]]> 7
+
+</select>
+
+
+	<select id="selectadminProductList" resultType="Map">
+	
+select b.* from
+	(select rownum rm,a.* from 
+		(select 
+			   PRODUCT_NO
+			  ,PRODUCT_NAME
+			  ,TO_CHAR(PRODUCT_PRICE,'FM999,999') PRODUCT_PRICE
+			  ,PRODUCT_DESCRIPTION
+			  ,PRODUCT_SALE
+			  ,PRODUCT_IMG
+			  ,DELIVERY_MTH
+			  ,DELIVERY_FEE
+			  ,REGISTRATION_DATE
+			  ,SALES_CNT
+			  ,VIEW_CNT
+			  ,PRODUCT_STATUS
+			  ,ADMIN_ID
+			  ,PRODUCT_URL
+			  ,TO_CHAR(PRODUCT_FINAL_PRICE,'FM999,999') PRODUCT_FINAL_PRICE
+			  ,UPDATED_DATE
+			  ,FILEPATH
+		From
+			PRODUCT
+		ORDER BY
+			PRODUCT_NO DESC) a) b 
+	where rm between #{firstIndex} and #{lastIndex}
+	
+	</select>
+	
+	<select id="selectAdminProductTotal" resultType="int">
+	
+		select count(*) from product
+	
+	
+	</select>
+
+	<select id="selectDetailProduct" resultType="com.ordershop.dto.ProductDto">
+	
+	
+		select PRODUCT_NO
+			  ,PRODUCT_NAME
+			  ,PRODUCT_PRICE
+			  ,PRODUCT_DESCRIPTION
+			  ,PRODUCT_SALE
+			  ,PRODUCT_IMG
+			  ,DELIVERY_MTH
+			  ,DELIVERY_FEE
+			  ,REGISTRATION_DATE
+			  ,SALES_CNT
+			  ,VIEW_CNT
+			  ,PRODUCT_STATUS
+			  ,ADMIN_ID
+			  ,PRODUCT_URL
+			  ,PRODUCT_FINAL_PRICE
+			  ,UPDATED_DATE
+			  ,FILEPATH
+		From
+			PRODUCT
+		WHERE
+			PRODUCT_NO=#{product_no}
+	
+	</select>
+	
+	<select id="selectSerachProduct" resultType="Map">
+	
+		  SELECT PRODUCT_NO
+			  ,PRODUCT_NAME
+			  ,TO_CHAR(PRODUCT_PRICE,'FM999,999') PRODUCT_PRICE
+			  ,PRODUCT_DESCRIPTION
+			  ,PRODUCT_SALE
+			  ,PRODUCT_IMG
+			  ,DELIVERY_MTH
+			  ,DELIVERY_FEE
+			  ,REGISTRATION_DATE
+			  ,SALES_CNT
+			  ,VIEW_CNT
+			  ,PRODUCT_STATUS
+			  ,ADMIN_ID
+			  ,PRODUCT_URL
+			  ,TO_CHAR(PRODUCT_FINAL_PRICE,'FM999,999') PRODUCT_FINAL_PRICE
+			  ,UPDATED_DATE 
+		    FROM product 
+		    WHERE product_name LIKE '%' || #{value} || '%'
+	
+	</select>
+
+	<select id="selectSearchProductCount" resultType="int">
+	
+		select count(*) from product where product_name like '%' || #{value} || '%'
+	
+	</select>
+	
+	<select id="selectBeforeDetailList" resultType="Integer">
+	
+		select max(product_no) from product where product_no <![CDATA[<]]> #{product_no}
+	
+	</select>
+	
+	<select id="selectNextDetailList" resultType="Integer">
+	
+		select min(product_no) from product where product_no > #{product_no}
+	
+	
+	</select>
+	
+	
+	<insert id="insertProduct">
+	
+		insert into product (PRODUCT_NO
+							,PRODUCT_NAME
+							,PRODUCT_PRICE
+							,PRODUCT_DESCRIPTION
+							,PRODUCT_SALE
+							,PRODUCT_IMG
+							,REGISTRATION_DATE
+							,PRODUCT_URL
+							,PRODUCT_FINAL_PRICE
+							,FILEPATH) 
+					 values (product_seq.nextval
+							,#{product_name}
+							,#{product_price}
+							,#{product_description}
+							,#{product_sale}
+							,#{product_img}
+							,sysdate
+							,'${product_url}'
+							,#{product_final_price}
+							,#{filepath} )
+	
+	</insert>
+	
+	<update id="updatetProduct">
+	
+		UPDATE PRODUCT SET 
+						   PRODUCT_NAME = #{product_name}
+						  ,PRODUCT_PRICE = #{product_price}
+						  ,PRODUCT_DESCRIPTION = #{product_description}
+						  ,PRODUCT_SALE = #{product_sale}
+						  ,PRODUCT_IMG = #{product_img}
+						  ,PRODUCT_URL = #{product_url}
+						  ,PRODUCT_FINAL_PRICE = #{product_final_price}
+						  ,UPDATED_DATE = sysdate
+						  ,FILEPATH = #{filepath}
+					WHERE
+						PRODUCT_NO = #{product_no}
+	
+	</update>
+	
+	
+	<delete id="deleteProducts">
+	
+	  DELETE FROM PRODUCT
+      WHERE PRODUCT_NO IN
+    <foreach item="id" collection="productIds" open="(" separator="," close=")">
+        #{id}
+    </foreach>
+	
+	</delete>
+	
+	<delete id="adminDetailDelete">
+	
+		delete from product where product_no = #{product_no}
+	
+	</delete>
+	
+	
+	<!-- 주문,취소 목록 S-->
+
+	<select id="selectSerachOrder" resultType="Map">
+	
+		SELECT ORDER_ID
+			  ,PRODUCT_NO
+			  ,ORDER_CNT
+			  ,ORDER_RDATE
+			  ,DELIVERY_METHOD
+			  ,DELIVERY_FEE
+			  ,DELIVERY_CATE
+			  ,USER_NO
+			  ,ORDER_STATUS
+			  ,PAY_ID
+			  ,CANCEL_NUM
+			  ,ADMIN_ID
+			  ,RECIPIENT_NAME
+			  ,RECIPIENT_ADDRESS
+			  ,PRODUCT_NAME
+			  ,to_char(TOTAL_PRICE,'FM999,999') TOTAL_PRICE 
+		  FROM 
+		  		ORDERITEM 
+		    WHERE PRODUCT_NAME LIKE '%' || #{value} || '%'
+
+	</select>
+
+	<select id="selectAdminOrderTotal" resultType="int">
+	
+		SELECT COUNT(*) FROM ORDERITEM
+	</select>
+
+	<select id="adimOrderItemList" resultType="Map">
+	
+		select b.* from
+	(select rownum rm,a.* from 
+		(select 
+			   ORDER_ID
+			  ,PRODUCT_NO
+			  ,ORDER_CNT
+			  ,ORDER_RDATE
+			  ,DELIVERY_METHOD
+			  ,DELIVERY_FEE
+			  ,DELIVERY_CATE
+			  ,USER_NO
+			  ,ORDER_STATUS
+			  ,PAY_ID
+			  ,CANCEL_NUM
+			  ,ADMIN_ID
+			  ,RECIPIENT_NAME
+			  ,RECIPIENT_ADDRESS
+			  ,PRODUCT_NAME 
+			  ,to_char(TOTAL_PRICE,'FM999,999') TOTAL_PRICE
+		  FROM 
+		  		ORDERITEM
+		ORDER BY
+			ORDER_RDATE) a) b 
+	where rm between #{firstIndex} and #{lastIndex}
+		
+	
+	</select>
+
+
+	<select id="selectSerachCancelOrder" resultType="Map">
+	
+		SELECT CANCEL_NUM
+			  ,ORDER_ID
+			  ,PAY_ID
+			  ,CANCEL_REASON
+			  ,CANCEL_DATE
+			  ,CANCEL_STATUS
+			  ,REFUND_PRICE
+			  ,USER_NO
+			  ,ADMIN_ID 
+			  ,PRODUCT_NAME
+			  ,ORDER_CNT
+		  FROM 
+		  		CANCELORDER 
+		    WHERE PRODUCT_NAME LIKE '%' || #{value} || '%'
+	
+	</select>
+
+	<select id="selectAdminCancelOrderTotal" resultType="int">
+	
+		SELECT COUNT(*) FROM CANCELORDER
+	
+	</select>
+
+
+	<select id="adimCancelOrderItemList" resultType="Map">
+	
+		select b.* from
+	(select rownum rm,a.* from 
+		(select 
+			   CANCEL_NUM
+			  ,ORDER_ID
+			  ,PAY_ID
+			  ,CANCEL_REASON
+			  ,CANCEL_DATE
+			  ,CANCEL_STATUS
+			  ,REFUND_PRICE
+			  ,USER_NO
+			  ,ADMIN_ID 
+			  ,PRODUCT_NAME
+			  ,ORDER_CNT
+		  FROM 
+		  		CANCELORDER
+		ORDER BY
+			CANCEL_DATE) a) b 
+	where rm between #{firstIndex} and #{lastIndex}
+	
+	</select>
+
+	<update id="updateCancelStatus">
+	
+		UPDATE CANCELORDER SET CANCEL_STATUS = 'Y' where CANCEL_NUM = #{datas}
+	
+	</update>
+	
+	<!-- 다연 -->
+	
+	<!-- 회원목록 총인원 -->
+   <select id="selectAdminMemberListTotal" resultType="int">
+    SELECT COUNT(*) FROM USERINFO WHERE IS_DELETED = 'N'
+   </select>
+	
+		
+		<!-- 회원목록리스트 출력 -->
+		   <select id="selectAdminMemberList" resultType="Map">
+		   <![CDATA[
+		      SELECT B.* FROM 
+		      (SELECT ROWNUM RN, A.* FROM
+		      (SELECT  
+		            USER_NO,
+		            USER_ID,
+		            USER_NAME,
+		            USER_PHONE,
+		            USER_GENDER,
+		            TO_CHAR(USER_JOIN,'YYYY-MM-DD') USER_JOIN
+		        FROM USERINFO U
+		        WHERE U.IS_DELETED = 'N' 
+		        ORDER BY USER_JOIN DESC
+		      ) A) B
+		      WHERE RN >= #{firstIndex} AND RN <= #{lastIndex}
+		   ]]>
+		   </select>
+		   
+
+	
+   <!-- 회원 검색 총인원 -->
+   <select id="selectSearchMemberTotal" resultType="int" parameterType="map">
+     SELECT COUNT(*)
+     FROM USERINFO
+     WHERE IS_DELETED = 'N'
+     <if test="value != null and value != ''">
+       <choose>
+         <when test="key == 'member_no'">
+           AND USER_NO = #{value}
+         </when>
+         <when test="key == 'member_id'">
+           AND USER_ID LIKE '%' || #{value} || '%'
+         </when>
+         <when test="key == 'member_name'">
+           AND USER_NAME LIKE '%' || #{value} || '%'
+         </when>
+         <otherwise>
+           <!-- 기본 조건 없음 -->
+         </otherwise>
+       </choose>
+     </if>
+   </select>
+
+    
+   <!-- 회원검색 리스트  -->
+   <select id="selectSearchMember" resultType="map" parameterType="map">
+     
+       SELECT * FROM (
+         SELECT ROWNUM RN, A.* FROM (
+           SELECT USER_NO, USER_ID, USER_NAME, USER_PHONE, USER_GENDER, TO_CHAR(USER_JOIN, 'YYYY-MM-DD') USER_JOIN
+           FROM USERINFO
+           WHERE IS_DELETED = 'N'
+           <if test="value != null and value != ''">
+           <choose>
+             <when test="key eq 'member_no'">
+               AND USER_NO = #{value}
+             </when>
+             <when test="key eq 'member_id'">
+               AND USER_ID LIKE '%' || #{value} || '%'
+             </when>
+             <when test="key eq 'member_name'">
+               AND USER_NAME LIKE '%' || #{value} || '%'
+             </when>
+             <otherwise>
+               <!-- 기본 조건 없음 -->
+             </otherwise>
+           </choose>
+         </if>
+
+           ORDER BY USER_JOIN DESC
+         ) A
+       ) WHERE RN BETWEEN #{firstIndex} AND #{lastIndex}
+
+   </select>
+
+      <!--회원목록리스트 디테일 출력  -->
+   
+   <select id="selectadminMemberListDetail" resultType="admindto">
+          SELECT  
+              USER_NO,
+              USER_ID,
+              USER_PASS,
+              USER_NAME,
+              USER_BIRTH,
+              USER_GENDER,
+              USER_PHONE,
+              USER_ADDRESS,
+              TO_CHAR(USER_JOIN,'YYYY-MM-DD') AS USER_JOIN
+          FROM 
+              USERINFO
+          WHERE 
+              USER_NO = #{user_no}
+   </select>
+   
+   
+      <!-- 삭제할 회원 정보 조회 -->
+  <select id="getMemberByUserNo" parameterType="int" resultType="com.ordershop.dto.AdminDto">
+    SELECT USER_NO, USER_ID, USER_PASS, USER_NAME, USER_BIRTH, USER_GENDER, USER_PHONE, USER_ADDRESS, TO_CHAR(USER_JOIN,'YYYY-MM-DD') AS USER_JOIN
+    FROM USERINFO
+    WHERE USER_NO = #{user_no}
+  </select>
+
+   <!-- 삭제 테이블에 저장 -->
+   <insert id="saveDeletedMember" parameterType="DeleteDto">
+    INSERT INTO user_delete (
+        delete_no, user_no, user_id, user_name, user_join, delete_date, delete_reason
+    ) VALUES (
+        user_delete_seq.NEXTVAL, #{user_no}, #{user_id}, #{user_name}, TO_TIMESTAMP(#{user_join, jdbcType=VARCHAR}, 'YYYY-MM-DD'), SYSDATE, #{delete_reason}
+    )
+   </insert>
+
+
+   <!-- 원본 테이블에서 실제 삭제 대신 논리 삭제 -->
+   <update id="setMemberAsDeleted" parameterType="int">
+       UPDATE USERINFO
+       SET is_deleted = 'Y'
+       WHERE user_no = #{user_no}
+   </update>
+   
+   
+   
+
+<!-- 삭제회원목록 총인원 -->
+<select id="selectDeleteMemberListTotal" resultType="int">
+  SELECT COUNT(*) FROM USER_DELETE
+</select>
+   <!-- 삭제회원목록리스트 출력 -->
+<select id="selectDeleteMemberList" resultType="Map">
+<![CDATA[
+    SELECT B.* FROM 
+    (SELECT ROWNUM RN, A.* FROM
+    (SELECT  
+        USER_NO,
+        USER_ID,
+        USER_NAME,
+        TO_CHAR(USER_JOIN,'YYYY-MM-DD') USER_JOIN,
+        TO_CHAR(DELETE_DATE,'YYYY-MM-DD') DELETE_DATE,
+        DELETE_REASON
+      FROM USER_DELETE D
+      ORDER BY DELETE_DATE DESC
+    ) A) B
+    WHERE RN >= #{firstIndex} AND RN <= #{lastIndex}
+]]>
+</select>
+
+
+<!-- 검색된 삭제회원 총인원 -->
+
+<select id="selectSearchDeleteMemberTotal" parameterType="map" resultType="int">
+    SELECT COUNT(*)
+    FROM USER_DELETE
+    <if test="value != null and value != ''">
+      WHERE
+      <choose>
+        <when test="key == 'member_no'">
+          USER_NO = #{value}
+        </when>
+        <when test="key == 'member_id'">
+          USER_ID LIKE '%' || #{value} || '%'
+        </when>
+        <when test="key == 'member_name'">
+          USER_NAME LIKE '%' || #{value} || '%'
+        </when>
+        <otherwise>
+          1=1
+        </otherwise>
+      </choose>
+    </if>
+</select>
+
+
+<!-- 검색된 삭제회원 목록 -->
+<select id="selectSearchDeleteMember"  resultType="map">
+    SELECT * FROM (
+      SELECT ROWNUM RN, A.* FROM (
+        SELECT USER_NO,
+               USER_ID,
+               USER_NAME,
+               TO_CHAR(USER_JOIN,'YYYY-MM-DD') USER_JOIN,
+               TO_CHAR(DELETE_DATE,'YYYY-MM-DD') DELETE_DATE,
+               DELETE_REASON
+        FROM USER_DELETE
+        <if test="value != null and value != ''">
+          WHERE
+          <choose>
+            <when test="key == 'member_no'">
+              USER_NO = #{value}
+            </when>
+            <when test="key == 'member_id'">
+              USER_ID LIKE '%' || #{value} || '%'
+            </when>
+            <when test="key == 'member_name'">
+              USER_NAME LIKE '%' || #{value} || '%'
+            </when>
+            <otherwise>
+              1=1
+            </otherwise>
+          </choose>
+        </if>
+        ORDER BY USER_JOIN DESC
+      ) A
+    ) WHERE RN BETWEEN #{firstIndex} AND #{lastIndex}
+</select>
+   
+      <!-- 차단 테이블에 저장 -->
+
+   <insert id="saveBlockedMember" parameterType="BlockDto">
+    INSERT INTO user_block (
+        block_no, user_no, user_id, user_name, user_join, block_date, block_reason
+    ) VALUES (
+        user_delete_seq.NEXTVAL, #{user_no}, #{user_id}, #{user_name}, TO_TIMESTAMP(#{user_join, jdbcType=VARCHAR}, 'YYYY-MM-DD'), SYSDATE, #{block_reason}
+    )
+   </insert>
+   
+
+
+   <!-- 원본 테이블에서 실제 차단 대신 논리 차단 -->
+   <update id="setMemberAsBlocked" parameterType="int">
+       UPDATE USERINFO
+       SET is_blocked = 'Y'
+       WHERE user_no = #{user_no}
+   </update>
+   
+   
+   
+   <!-- 차단회원목록 총인원 -->
+   <select id="selectBlockMemberListTotal" resultType="int">
+     SELECT COUNT(*) FROM USER_BLOCK
+   </select>
+      <!-- 차단회원목록리스트 출력 -->
+   <select id="selectBlockMemberList" resultType="Map">
+   <![CDATA[
+       SELECT B.* FROM 
+       (SELECT ROWNUM RN, A.* FROM
+       (SELECT  
+           USER_NO,
+           USER_ID,
+           USER_NAME,
+           TO_CHAR(USER_JOIN,'YYYY-MM-DD') USER_JOIN,
+           TO_CHAR(BLOCK_DATE,'YYYY-MM-DD') BLOCK_DATE,
+           BLOCK_REASON
+         FROM USER_BLOCK D
+         ORDER BY BLOCK_DATE DESC
+       ) A) B
+       WHERE RN >= #{firstIndex} AND RN <= #{lastIndex}
+   ]]>
+   </select>
+
+
+   
+   <!-- 검색된 차단단회원 총인원 -->
+   
+   <select id="selectSearchBlockMemberTotal" parameterType="map" resultType="int">
+       SELECT COUNT(*)
+       FROM USER_BLOCK
+       <if test="value != null and value != ''">
+         WHERE
+         <choose>
+           <when test="key == 'member_no'">
+             USER_NO = #{value}
+           </when>
+           <when test="key == 'member_id'">
+             USER_ID LIKE '%' || #{value} || '%'
+           </when>
+           <when test="key == 'member_name'">
+             USER_NAME LIKE '%' || #{value} || '%'
+           </when>
+           <otherwise>
+             1=1
+           </otherwise>
+         </choose>
+       </if>
+   </select>
+   
+   
+   <!-- 검색된 차단회원 목록 -->
+   <select id="selectSearchBlockMember"  resultType="map">
+       SELECT * FROM (
+         SELECT ROWNUM RN, A.* FROM (
+           SELECT USER_NO,
+                  USER_ID,
+                  USER_NAME,
+                  TO_CHAR(USER_JOIN,'YYYY-MM-DD') USER_JOIN,
+                  TO_CHAR(BLOCK_DATE,'YYYY-MM-DD') BLOCK_DATE,
+                  BLOCK_REASON
+           FROM USER_BLOCK
+           <if test="value != null and value != ''">
+             WHERE
+             <choose>
+               <when test="key == 'member_no'">
+                 USER_NO = #{value}
+               </when>
+               <when test="key == 'member_id'">
+                 USER_ID LIKE '%' || #{value} || '%'
+               </when>
+               <when test="key == 'member_name'">
+                 USER_NAME LIKE '%' || #{value} || '%'
+               </when>
+               <otherwise>
+                 1=1
+               </otherwise>
+             </choose>
+           </if>
+           ORDER BY USER_JOIN DESC
+         ) A
+       ) WHERE RN BETWEEN #{firstIndex} AND #{lastIndex}
+   </select>
+   
+   <!-- 일괄삭제.xml -->
+	<update id="logicDeleteUser" parameterType="map">
+    UPDATE USERINFO
+    SET IS_DELETED = 'Y'
+    WHERE USER_NO = #{userNo}
+	</update>
+	
+	 <!-- 관리자 로그인 -->
+   <!-- AdminMapper.xml -->
+      <select id="selectAdminCheck" parameterType="AdminDto" resultType="int">
+        SELECT COUNT(*) FROM ADMININFO
+        WHERE ADMIN_ID = #{admin_id} AND ADMIN_PASS = #{admin_pass}
+      </select>
+
+	
+	
+	
+	
+	
+		
+
+</mapper>

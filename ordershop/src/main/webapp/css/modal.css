@@ -1,0 +1,109 @@
+#delivery_modal.hidden, #deliveryCancle_modal.hidden {
+    display: none;
+}
+.modal_container {
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+}
+.modal_con {
+    overflow-x: hidden;
+    max-height: 90%;
+    width: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    background: #fff;
+    border-radius: 6px;
+    padding: 45px 50px;
+    display: flex;
+    gap: 40px;
+    flex-direction: column;
+    align-items: center;
+}
+.modal_con > div {
+	width: 100%
+}
+.modal_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.modal_header h2 {
+	font-size: 2.2rem;
+    font-weight: 500;
+    color: #333;
+}
+.modal_body {
+	display: flex;
+	flex-direction: column;
+    gap: 30px;
+}
+.modal_body p {
+	display: flex;
+	font-size: 1.8rem;
+    font-weight: 500;
+    color: #333;
+}
+.modal_body p::after {
+    content: "*";
+    display: block;
+    color: #f00;
+    padding: 0 3px;
+}
+.modal_body input, .modal_body select {
+	box-shadow: 0 0 3px 1px #d1d1d1;
+    padding: 15px;
+    border-radius: 7px;
+    width: 100%;
+}
+
+.modal_body .modal_inner {
+	display: flex;
+	flex-direction: column;
+    gap: 15px;
+}
+
+.modal_body .address_wrap {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.modal_body .address_wrap input {
+	width: 80%;
+}
+.modal_body .address_wrap button {
+	width: 19%;
+	height: 45px;
+}
+
+.modalBtn_wrap {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.modalBtn_wrap button {
+	width: 49%;
+	padding: 15px 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+

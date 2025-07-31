@@ -1,0 +1,8 @@
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.myhome.dto.ProductDto"  alias="productDto" />
+		<typeAlias type="com.myhome.dto.UcartDto"  alias="ucartDto" />
+		<typeAlias type="com.myhome.dto.MemberDto"  alias="memberDto" />
+		<typeAlias type="com.myhome.dto.UOrderDto"  alias="uorderDto" />
+	</typeAliases>
+</configuration> 

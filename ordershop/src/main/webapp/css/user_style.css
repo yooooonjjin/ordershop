@@ -1,0 +1,1031 @@
+/* 마이페이지 공통 */
+#content_wrap {
+    position: relative;
+    top: 154px;
+}
+#content_wrap .con_inner {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+#content_wrap .con_title {
+    width: 100%;
+    text-align: center;
+    padding: 70px 0 35px 0;
+}
+#content_wrap .con_title p {
+    font-size: 3.0rem;
+    color: #333;
+    font-weight: 500;
+}
+#content_wrap .con_wrap {
+    width: 100%;
+    padding: 50px 0;
+}
+#content_wrap .inner_R {
+    display: flex;
+    padding: 20px 0;
+    justify-content: space-between;
+}
+#content_wrap .aside {
+    width: 20%;
+}
+#content_wrap .aside ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    border: 2px solid #2360E6;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+#content_wrap .aside ul li {
+    width: 100%;
+    border-bottom: 1px solid #e1e1e1;
+}
+#content_wrap .aside ul li:last-child {
+    border-bottom: none;
+}
+#content_wrap .aside ul li a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    font-size: 1.8rem;
+    color: #666;
+    font-weight: 500;
+}
+#content_wrap .aside ul li a::after {
+    content: "";
+    display: block;
+    background: url(img/arrow_icon.svg) no-repeat center top;
+    height: 1.4rem;
+    width: 0.8rem;
+}
+#content_wrap .section .sec_title p {
+    font-size: 2.2rem;
+    color: #000;
+    font-weight: 500;
+}
+/* 마이페이지 공통 */
+
+
+
+/* 사용자 장바구니 */
+#CT_wrap {
+    width: 78%;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 25px;
+}
+#CT_wrap > div {
+    width: 100%;
+}
+#CT_wrap .CT_total p {
+    font-size: 1.8rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+#CT_wrap .CT_total span {
+    color: #2360E6;
+    font-weight: 500;
+    padding-left: 5px;
+    font-size: 2.0rem;
+}
+#CT_wrap .CT_top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#CT_wrap .checkbox_wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#CT_wrap .checkbox_wrap label {
+    font-size: 1.6rem;
+    color: #666;
+}
+#CT_wrap .checkbox_wrap .checkbox {
+    width: 22px;
+    height: 22px;
+    box-shadow: 0 0 3px 1px #d1d1d1;
+    border-radius: 5px;
+}
+#CT_wrap .CT_top .CT_delBtn {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+#CT_wrap .CT_top button {
+    padding: 7px 15px;
+}
+
+#CT_wrap  .cartListForm {
+	width: 100%;
+	border-bottom: 1px solid #d1d1d1;
+}
+#CT_wrap  .cartListForm:last-child {
+    border-bottom: none;
+}
+#CT_wrap .CT_list {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    padding-bottom: 25px;
+} 
+#CT_wrap .CT_L {
+    display: flex;
+    align-items: flex-start;
+    width: 45%;
+} 
+#CT_wrap .CT_L p {
+    font-size: 1.8rem;
+    color: #333;
+    font-weight: 500;
+    padding: 5px 0;
+}
+#CT_wrap .CT_L .P_name {
+    font-size: 1.6rem;
+    color: #999;
+    font-weight: 400;
+}
+#CT_wrap .CT_L .CT_info {
+	padding: 0 15px;
+}
+#CT_wrap .checkbox_wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 20px;
+}
+#CT_wrap .checkbox {
+    width: 22px;
+    height: 22px;
+    box-shadow: 0 0 3px 1px #d1d1d1;
+    border-radius: 5px;
+}
+#CT_wrap .CT_R {
+    width: 55%;
+    display: flex;
+    align-items: center;
+}
+#CT_wrap .CT_R > div {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    width: 20%;
+    border-left: 1px solid #d1d1d1;
+}
+#CT_wrap .CT_R > div p {
+    font-size: 1.8rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.choice_btn {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+.choice_btn button {
+    width: 70%;
+    font-size: 1.6rem;
+    padding: 4px;    
+}
+
+
+/* 사용자 장바구니 */
+
+
+
+/* 사용자 상품 목록 */
+#PL_wrap .p_title p {
+    font-size: 2.2rem;
+    color: #000;
+    font-weight: 500;
+}
+#PL_wrap .p_search {
+    padding: 20px 0 50px 0;
+}
+#PL_wrap .p_search form {
+	width: 100%;
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#PL_wrap .p_search form input {
+    width: 89%;
+    box-shadow: 0px 0px 3px 1px #d1d1d1;
+    border-radius: 7px;
+    font-size: 1.8rem;
+    padding: 15px;
+}
+#PL_wrap .p_search form button {
+    width: 10%;
+    font-size: 1.8rem;
+    line-height: 1.8rem;
+    padding: 15px;
+    box-shadow: 0px 0px 3px 1px #fff;
+}
+#PL_wrap .P_list_top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#PL_wrap .P_list_top .total p {
+    font-size: 1.8rem;
+    line-height: 1.8rem;
+    color: #333;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+}
+#PL_wrap .P_list_top .total span {
+    font-size: 2.0rem;
+    line-height: 2.0rem;
+    color: #2360E6;
+    font-weight: 500;
+    padding-left: 5px;
+}
+#PL_wrap .P_list_top .sort_wrap {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+#PL_wrap .P_list_top .sort_wrap li a {
+    font-size: 1.8rem;
+    line-height: 1.8rem;
+    color: #999;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+#PL_wrap .P_list_top .sort_wrap li a::before {
+    content: "";
+    display: block;
+    width: 4px;
+    height: 4px;
+    background-color: #999;
+    border-radius: 50%;
+}
+#PL_wrap .P_list_top .sort_wrap li a.sort_active {
+    color: #2360E6;
+    font-weight: 500;
+}
+
+#PL_wrap .P_list_top .sort_wrap li a.sort_active::before {
+    background-color: #2360E6;
+}
+#PL_wrap .P_list_content {
+    padding: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+#PL_wrap .P_list_content .P_con {
+    width: 25%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 30px;
+    padding: 25px 15px;
+}
+#PL_wrap .P_list_content .P_con img {
+    width: 100%;
+}
+#PL_wrap .P_list_content .P_info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+#PL_wrap .P_list_content .P_info > div {
+    width: 100%;
+}
+#PL_wrap .P_list_content .P_info .P_title p {
+    font-size: 1.8rem;
+    color: #333;
+    font-weight: 500;
+    padding: 5px 0;
+}
+#PL_wrap .P_list_content .P_info .P_title .P_name {
+    font-size: 1.4rem;
+    color: #666;
+    font-weight: 400;
+}
+#PL_wrap .P_list_content .P_info .P_hits p {
+    font-size: 1.4rem;
+    color: #999;
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+}
+#PL_wrap .P_list_content .P_info .P_hits p::before {
+    content: "";
+    display: block;
+    background: url(img/hits_icon.svg) no-repeat center top;
+    width: 20px;
+    height: 16px;
+}
+#PL_wrap .P_list_content .P_info .S_price p {
+    font-size: 2.4rem;
+    color: #2360E6;
+    font-weight: 500;
+}
+#PL_wrap .P_list_content .P_info .S_price span {
+    color: #333;
+}
+#PL_wrap .P_list_content .P_info .P_price p {
+    font-size: 1.6rem;
+    color: #999;
+    position: relative;
+    display: inline-block;
+    padding: 0 7px;
+}
+#PL_wrap .P_list_content .P_info .P_price p::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* 사용자 상품 목록 */
+
+/* 사용자 상품 상세 */
+#PD_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#PD_wrap .PD_img {
+    width: 35%;
+}
+#PD_wrap .PD_img img {
+    width: 100%;
+}
+#PD_wrap .border {
+    width: 1px;
+    height: 100%;
+    background-color: #d9d9d9;
+}
+#PD_wrap .PD_info {
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 100%;
+    align-content: space-between;
+}
+#PD_wrap .PD_info > div {
+    width: 100%;
+}
+#PD_wrap .PD_info .P_text {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10px;
+}
+#PD_wrap .PD_info .P_text > div {
+    width: 100%;
+}
+#PD_wrap .PD_info .P_title p {
+    font-size: 2.6rem;
+    color: #333;
+    font-weight: 500;
+    padding: 10px 0;
+}
+#PD_wrap .PD_info .P_title .P_name {
+    font-size: 1.6rem;
+    color: #666;
+    font-weight: 400;
+}
+#PD_wrap .PD_info .S_price p {
+    font-size: 3.2rem;
+    line-height: 3.2rem;
+    color: #2360E6;
+    font-weight: 600;
+}
+#PD_wrap .PD_info .S_price span {
+    color: #333;
+}
+#PD_wrap .PD_info .P_price p {
+    font-size: 2.0rem;
+    line-height: 2.0rem;
+    color: #999;
+    position: relative;
+    display: inline-block;
+    padding: 0 7px;
+}
+#PD_wrap .PD_info .P_price p::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#PD_wrap .PD_info .delivery {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+#PD_wrap .PD_info .delivery_wrap > div {
+    width: 100%;
+}
+#PD_wrap .PD_info .delivery_box {
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 0px 3px 1px #d1d1d1;
+    padding: 20px;
+    border-radius: 7px;
+    margin: 20px 0;
+}
+#PD_wrap .PD_info .delivery_box label {
+    width: 20%;
+    font-size: 2.0rem;
+    color: #333;
+    font-weight: 500;
+}
+
+#PD_wrap .PD_info .delivery_box p {
+    font-size: 1.8rem;
+    color: #333;
+    font-weight: 400;
+}
+
+#PD_wrap .purchase_wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+#PD_wrap .purchase_wrap > div {
+    width: 100%;
+}
+#PD_wrap .purchase_wrap .cnt_price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#PD_wrap .purchase_wrap  .cnt_price .cnt {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    box-shadow: 0px 0px 3px 1px #d1d1d1;
+    border-radius: 7px;
+    padding: 3px 15px;
+}
+#PD_wrap .purchase_wrap .cnt_price .cnt p {
+	font-size: 2.0rem;
+    line-height: 2.0rem;
+    color: #333;
+    font-weight: 500;
+}
+#PD_wrap .purchase_wrap .cnt_price .cnt button {
+    font-size: 2.6rem;
+    color: #666;
+    font-weight: 500;
+}
+#PD_wrap .purchase_wrap .cnt_price .T_price p {
+    color: #333;
+    font-size: 2.0rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+#PD_wrap .purchase_wrap .cnt_price .T_price p span {
+    font-size: 2.8rem;
+    color: #2360E6;
+    font-weight: 600;
+    padding-left: 15px;
+}
+#PD_wrap .purchase_wrap .btn_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#PD_wrap .purchase_wrap .btn_wrap button {
+    width: 49%;
+    padding: 15px 0;
+    font-size: 2.0rem;
+    font-weight: 500;
+
+}
+/* 사용자 상품 상세 */
+
+/* 사용자 주문 결제 */
+#PM_wrap .p_title p,  #PM_wrap .t_title p{
+    font-size: 2.2rem;
+    color: #000;
+    font-weight: 500;
+}
+#PM_wrap .PM_con {
+    display: flex;
+    justify-content: space-between;
+}
+/* 주문 결제 좌측 */
+#PM_wrap .PM_con_L {
+    width: 75%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+#PM_wrap .PM_con_L > div { 
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+#PM_wrap .PM_con_L .PM_list > div {
+    width: 100%;
+}
+#PM_wrap .order_list {
+    box-shadow: 0 0 3px 1px #d1d1d1;
+    padding: 30px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#PM_wrap .order_L {
+    width: 70%;
+    display: flex;
+    align-items: flex-start;
+}
+#PM_wrap .order_L .PM_img {
+    width: 25%;
+}
+#PM_wrap .order_L .PM_img img {
+    width: 100%;
+}
+#PM_wrap .order_L .PM_info {
+    width: 73%;
+    padding: 10px 30px;
+}
+#PM_wrap .order_L .PM_info p {
+    font-size: 1.8rem;
+    color: #333;
+    font-weight: 500;
+    padding: 5px 0;
+}
+#PM_wrap .order_L .PM_info .P_name {
+    font-size: 1.6rem;
+    color: #999;
+    font-weight: 400;
+}
+#PM_wrap .order_R {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+#PM_wrap .PM_price .PM_price_inner {
+	display: flex;
+	align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#PM_wrap .PM_price .PM_price_inner .product_price {
+	font-size: 1.4rem;
+    padding: 3px 0;
+    text-align: center;
+    color: #999;
+    font-weight: 400;
+}
+#PM_wrap .PM_price .PM_price_inner .product_price::after {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 1px;
+    background-color: #999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#PM_wrap .order_R > div {
+    height: 100%;   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    border-left: 1px solid #d1d1d1;
+}
+#PM_wrap .order_R > div p {
+    font-size: 1.8rem;
+    color: #333;
+    font-weight: 500;
+    text-align: center;
+    width: 100%;
+}
+
+/* 테이블 */
+.table {
+    width: 100%;
+    padding: 30px 40px;
+    border-top: 2px solid #333;
+    border-bottom: 1px solid #e1e1e1;
+}
+.table label {
+    font-size: 1.6rem;
+    color: #333;
+}
+.table th {
+    text-align: left;
+}
+.table input {
+    box-shadow: 0 0 3px 1px #d1d1d1;
+    padding: 20px;
+    border-radius: 7px;
+    width: 100%;
+    margin: 13px 0;
+    font-size: 1.4rem;
+    color: #666;
+}
+.table textarea {
+    box-shadow: 0 0 3px 1px #d1d1d1;
+    padding: 20px;
+    border-radius: 7px;
+    width: 100%;
+    margin: 10px 0;
+    height: 55px;
+}
+.table button {
+    font-size: 1.6rem;
+    color: #2360E6;
+    padding: 10px 20px;
+    margin: 13px 0;
+}
+/* 테이블 */
+#PM_wrap .pay_method .t_title {
+    width: 100%;
+    border-bottom: 2px solid #333;
+    padding-bottom: 30px;
+}
+#PM_wrap .pay_method .pay_con {
+    width: 100%;
+    padding: 30px 40px;
+}
+#PM_wrap .pay_method .pay_con .pay_title {
+    font-size: 1.8rem;
+    color: #333;
+    font-weight: 500;
+}
+#PM_wrap .pay_btnWrap {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 30px 0 0 0;
+}
+#PM_wrap .pay_btnWrap button {
+    box-shadow: 0 0 3px 1px #d1d1d1;
+    padding: 15px 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 24%;
+    margin: 10px 0;
+    font-size: 1.6rem;
+    color: #666;
+    border: 2px solid #fff;
+    
+}
+#PM_wrap .pay_btnWrap button:hover, #PM_wrap .pay_btnWrap button.active {
+	border: 2px solid #2360E6;
+	color: #2360E6;
+}
+/* 주문 결제 좌측 */
+
+/* 주문 결제 우축 */
+#PM_wrap .PM_con_R {
+    width: 24%;
+    height: fit-content;    
+    padding: 30px;
+    border: 2px solid #2360E6;
+    border-radius: 7px;
+    position: sticky;
+    top: 183px;
+}
+
+#PM_wrap .TP_wrap .TP_title > p {
+    font-size: 2.0rem;
+    color: #333;
+    font-weight: 500;
+}
+#PM_wrap .TP_wrap ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 30px 0;
+    border-bottom: 1px solid #d1d1d1;
+}
+#PM_wrap .TP_wrap ul li {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#PM_wrap .TP_wrap ul li p {
+    font-size: 1.8rem;
+    color: #333;
+    font-weight: 500;
+}
+#PM_wrap .TP_wrap ul li .TP_p01 {
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+#PM_wrap .TP_wrap ul li .TP_p02 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+#PM_wrap .TP_wrap ul li .TP_p03 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    
+}
+#PM_wrap .TP_wrap ul li .TP_p03 span {
+    color: #2360E6;
+}
+
+#PM_wrap .TP_wrap .TP_agree {
+    font-size: 1.6rem !important;
+    font-weight: 400 !important;
+}
+
+#PM_wrap .TP_wrap .TP_btn button {
+    width: 100%;
+    padding: 15px 0;
+    font-size: 2.2rem;
+}
+/* 사용자 주문 결제 */
+
+/* 사용자 주문 내역 */
+.mypage_content {
+	width: 78%;
+}
+.mypage_content .p_title {
+    font-size: 2.2rem;
+    color: #000;
+    font-weight: 500;
+}
+.mypage_content .p_search {
+    padding: 20px 0 50px 0;
+}
+.mypage_content .p_search form {
+	width: 100%;
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.mypage_content .p_search form input {
+    width: 89%;
+    box-shadow: 0px 0px 3px 1px #d1d1d1;
+    border-radius: 7px;
+    font-size: 1.8rem;
+    padding: 15px;
+}
+.mypage_content .p_search form button {
+    width: 10%;
+    font-size: 1.8rem;
+    line-height: 1.8rem;
+    padding: 15px;
+    box-shadow: 0px 0px 3px 1px #fff;
+}
+.mypage_content .tab_wrap {
+	display: flex;
+    flex-direction: column;
+}
+.mypage_content .tab_wrap .tab_btn {
+    width: 100%;
+	display: flex;
+    align-items: center;
+    border-bottom: 2px solid #e1e1e1;
+}
+
+.mypage_content .tab_wrap .tab_btn a {
+	font-size: 1.8rem;
+    color: #999;
+    padding: 15px;
+	font-weight: 400;
+}
+.mypage_content .tab_wrap .tab_btn a.active {
+	color: #2360E6;
+	font-weight: 500;
+	border-bottom: 3px solid #2360E6;
+    position: relative;
+    top: 2px;
+}
+.mypage_content .my_orderList {
+	padding: 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #d1d1d1;
+}
+.mypage_content .order_L {
+	display: flex;
+    align-items: flex-start;
+    width: 65%;
+}
+.mypage_content .order_L .UD_info p {
+	font-size: 1.8rem;
+    color: #333;
+    font-weight: 500;
+    padding: 5px 20px;
+    line-height: 2.6rem;
+}
+.mypage_content .order_L .UD_info .P_name {
+	font-size: 1.6rem;
+    color: #666;
+    font-weight: 400;
+    line-height: 1.6rem;
+}
+.mypage_content .order_R {
+    width: 35%;
+    height: 143px;
+    display: flex;
+    align-items: center;
+}
+
+.mypage_content .order_R > div {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    border-left: 1px solid #d1d1d1;
+}   
+.mypage_content .order_R > div p {
+	font-size: 1.8rem;
+    color: #333;
+    font-weight: 500;
+    text-align: center;
+    width: 100%;
+}
+.mypage_content .order_R .delivery_detailBtn {
+	color: #2360E6;
+	padding: 7px 15px;
+}
+    
+/* 사용자 주문 내역 */
+
+/* 사용자 주문 내역 상세 */
+.mypage_content {
+	width: 78%;
+}
+.mypage_content .p_title {
+    font-size: 2.2rem;
+    color: #000;
+    font-weight: 500;
+}
+.ord_detailWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.mypage_content .ord_priInfo {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+.ord_detail_L {
+    border-right: 1px solid #e1e1e1;
+    padding: 0 30px 0 0;
+}
+.ord_detail_R {
+    width: 74%;
+    padding: 0 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.ord_num p {
+    font-size: 1.8rem;
+    color: #999;
+}
+
+.ord_title p {
+    font-size: 2.6rem;
+    line-height: 3.4rem;
+    color: #333;
+    font-weight: 500;
+    padding: 7px 0;
+}
+.ord_title .ord_name {
+    font-size: 1.8rem;
+    line-height: 1.6rem;
+    color: #666;
+    font-weight: 400;
+}
+.ord_price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+}
+.ordS_price p {
+    font-size: 3.2rem;
+    font-weight: 600;
+    color: #2360E6;
+}
+.ordS_price span {
+    color: #333;
+}
+.ordP_price p {
+    font-size: 1.8rem;
+    color: #999;
+    position: relative;
+    display: inline-block;
+}
+.ordP_price p::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.ord_cnt {
+    display: flex;
+    align-items: center;
+}
+.ord_cnt p {
+    font-size: 2.0rem;
+    color: #666;
+    font-weight: 500;
+}
+
+
+.user_info .t_title p, .recipient_info .t_title p, .payment_info .t_title p {
+    font-size: 2.2rem;
+    color: #000;
+    font-weight: 500;
+    padding: 15px 0;
+}
+
+.ord_detailWrap .table input {
+    box-shadow: none;
+}
+
+.under_btn_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0;
+}
+.under_btn_wrap button {
+    padding: 5px 15px;
+    font-size: 1.8rem;
+
+}
+/* 사용자 주문 내역 상세 */
+
+/* 페이징 css */
+.div_page {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.div_page .disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+.div_page .page_num {
+	font-size: 2.0rem;
+    color: #333;
+    font-weight: 400;
+	padding: 10px 15px;
+	transition: 0.3s;
+	background-color: #fff;
+	border-radius: 50%;
+}
+.div_page .page_num:hover, .div_page .page_num.current_page{
+	background-color: #2360E6;
+	color: #fff;
+	transition: 0.3s;
+}
+
+/* 페이징 css */
+
+
